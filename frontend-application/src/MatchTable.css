@@ -1,0 +1,25 @@
+table{
+    margin-top: 10px;
+    border: 3px solid #081d1b;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th{
+    background-color: #081d1b;
+}
+
+td {
+    border: 3px solid #081d1b;
+    padding-block: 5px;
+    background-color: #0b292697;
+}
+
+tr:hover{
+    color: red;
+}
+
+thead tr:hover{
+    color: #3dc9bd;
+}
