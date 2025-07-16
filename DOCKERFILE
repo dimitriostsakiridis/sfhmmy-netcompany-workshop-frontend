@@ -1,20 +1,13 @@
-# Use official Node image with Alpine (lightweight)
 FROM node:18-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy package files first for better caching
 COPY package.json package-lock.json ./
 
-# Install dependencies
 RUN npm install
 
-# Copy all other files
 COPY . .
 
-# Expose Vite's default port (change if different)
 EXPOSE 5173
 
-# Start development server
 CMD ["npm", "run", "dev"]
