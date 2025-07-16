@@ -1,12 +1,17 @@
-# React + Vite
+# Match-API Frontend Application using React
+<h4>A React + Vite frontend application with minimal functionality</h4>
+<p>This is my introductory project using React's framework for building front end applications. It is a single page application that utilizes the API's CRUD features</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h3>Backend API</h3>
+<a href="https://github.com/dimitriostsakiridis/sfhmmy-netcompany-workshop/tree/master">
+  sfhmmy-netcompany-workshop
+</a>
 
-Currently, two official plugins are available:
+</hr>
+<h3>Current Features: </h3>
+<ul>
+  <li>Match registration</li>
+  <li>Table view of registered matches</li>
+</ul>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<p>"Panel View" and the application's search box are still in progress</p>
