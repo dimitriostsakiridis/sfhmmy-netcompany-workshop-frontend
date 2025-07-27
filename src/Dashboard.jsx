@@ -21,7 +21,7 @@ export default function Dashboard(){
   
     return (
         <>
-          <MatchForm onMatchSubmitted={fetchMatches} apiUrl={apiUrl} />
+          <MatchForm className="matchform" onMatchSubmitted={fetchMatches} apiUrl={apiUrl} />
           <div className="searchbox">
             <h3>Enter anything to search:</h3>
             <form>

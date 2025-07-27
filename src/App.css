@@ -23,7 +23,7 @@ header {
   padding-inline: 15px;
   justify-content: space-between;
   align-items: baseline;
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid #ff645c;
 }
 
 nav{

@@ -43,7 +43,9 @@ export default function MatchForm({ onMatchSubmitted, apiUrl }) {
     return (
         <div className="form-container">
             <form className='matchForm' onSubmit={handleSubmit}>
-                <h3>Register a match:</h3>
+                <div className="formtitle">
+                 <span id='title'>Create</span>
+                </div>
                 <div>
                     <label>Home:</label><br />
                     <input type="text" value={teamHomeName} onChange={(e) => setTeamHomeName(e.target.value)} />
@@ -52,12 +54,12 @@ export default function MatchForm({ onMatchSubmitted, apiUrl }) {
                     <label>Away:</label><br />
                     <input type="text" value={teamAwayName} onChange={(e) => setTeamAwayName(e.target.value)} />
                 </div>
-                <div>
+                <span>
                     <label>Score:</label><br />
                     <input type="number" value={teamHomeGoals} onChange={(e) => setTeamHomeGoals(e.target.value)} className='scoreIn' />
                     <strong>-</strong>
                     <input type="number" value={teamAwayGoals} onChange={(e) => setTeamAwayGoals(e.target.value)} className='scoreIn' />
-                </div>
+                </span>
                 <button type="submit">Submit</button>
             </form>
         </div>
