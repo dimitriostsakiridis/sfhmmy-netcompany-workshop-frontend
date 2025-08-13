@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import './MatchForm.css';
+import  { submitMatch } from '../services/matchService'
 
-export default function MatchForm({ onMatchSubmitted, apiUrl }) {
+export default function MatchForm({onMatchSubmitted}) {
     const [teamHomeName, setTeamHomeName] = useState("");
     const [teamHomeGoals, setTeamHomeGoals] = useState(0);
     const [teamAwayName, setTeamAwayName] = useState("");
     const [teamAwayGoals, setTeamAwayGoals] = useState(0);
 
-    const handleSubmit = (e) => {
+    const API_URL = "http://localhost:8081/api";
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const match = {
             teamHomeName,
@@ -21,23 +24,18 @@ export default function MatchForm({ onMatchSubmitted, apiUrl }) {
             return;
         }
 
-        fetch(`${apiUrl}/matches`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(match)
-        })
-        .then(res => {
-            if (!res.ok) throw new Error("Failed to submit match:");
-            return res.json();
-        })
-        .then(() => {
-            onMatchSubmitted();
-            setTeamHomeName("");
-            setTeamAwayName("");
-            setTeamHomeGoals(0);
-            setTeamAwayGoals(0);
-        })
-        .catch(err => console.error('Submit error:', err));
+        try {
+          const data = await submitMatch(match).then(() => {
+                onMatchSubmitted();
+                setTeamHomeName("");
+                setTeamAwayName("");
+                setTeamHomeGoals(0);
+                setTeamAwayGoals(0);
+                });
+        } catch (err) {
+          console.error("Fetch error:", err);
+        }
+        
     };
 
     return (
