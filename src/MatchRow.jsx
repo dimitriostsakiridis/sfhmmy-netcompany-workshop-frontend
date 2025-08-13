@@ -14,7 +14,7 @@ export default function MatchRow({match}){
                 <strong>{match.teamAwayName}</strong>
              </td>
             <td>
-                <strong>{match.teamHomeGoals}-{match.teamHomeGoals}</strong>
+                <strong>{match.teamHomeGoals}-{match.teamAwayGoals}</strong>
             </td>
             <td>
                 {match.date}
