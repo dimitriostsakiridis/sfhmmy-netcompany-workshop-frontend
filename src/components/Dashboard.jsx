@@ -1,42 +1,56 @@
 import MatchTable from "./MatchTable";
 import MatchForm from "./MatchForm";
+import SearchForm from "./SearchForm"
 import './Dashboard.css';
 import { useState, useEffect } from "react";
-import { getMatches } from '../services/matchService';
 import FilterForm from "./FilterForm";
+import { useDispatch, useSelector} from "react-redux";
+import { fetchMatchesRequest } from "../store/matchActions";
 
 export default function Dashboard() {
-  const [matches, setMatches] = useState([]);
-
-  const fetchMatches = async () => {
-    try {
-      const data = await getMatches();
-      setMatches(data);
-    } catch (err) {
-      console.error("Fetch error:", err);
-    }
-  };
+  const [filteredMatches, setFilteredMatches] = useState([]);
+  const dispatch = useDispatch();
+  const { matches, loading, error } = useSelector((state) => state.matchState);
 
   useEffect(() => {
-    fetchMatches();
-  }, []);
+    dispatch(fetchMatchesRequest());
+    setFilteredMatches(matches);
+  }, [dispatch]);
+
+  useEffect(() => {
+  setFilteredMatches(matches);
+  }, [matches]);
+
+  //Client Side Searching
+  const handleSearch = (searchval) => {
+    if (searchval.trim() === "") {
+      setFilteredMatches(matches);
+      return;
+    }
+    
+    const results = matches.filter(item =>
+      Object.values(item).some(val =>
+        String(val).toLowerCase().includes(searchval.toLowerCase())
+      )
+    );
+    setFilteredMatches(results);
+  };
 
   return (
     <>
       <div className="formscontainer">
         <MatchForm 
           className="matchform" 
-          onMatchSubmitted={fetchMatches} 
+          onMatchSubmitted={() => dispatch(fetchMatchesRequest())} 
         />
         <FilterForm className="filterform"/>
       </div>
       <div className="searchbox">
-        <h3>Enter anything to search:</h3>
-        <form>
-          <input type="text" id="search" placeholder="Search..." />
-        </form>
+        <SearchForm onSearchSubmitted={handleSearch}/>
       </div>
-      <MatchTable matches={matches} />
+      {loading && <p>Loading</p>}
+      {error && <p style={{color:"red"}}>{error}</p>}
+      <MatchTable matches={filteredMatches} />
     </>
   );
 }

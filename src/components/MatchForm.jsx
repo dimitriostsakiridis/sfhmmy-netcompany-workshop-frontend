@@ -7,9 +7,7 @@ export default function MatchForm({onMatchSubmitted}) {
     const [teamHomeGoals, setTeamHomeGoals] = useState(0);
     const [teamAwayName, setTeamAwayName] = useState("");
     const [teamAwayGoals, setTeamAwayGoals] = useState(0);
-
-    const API_URL = "http://localhost:8081/api";
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         const match = {
