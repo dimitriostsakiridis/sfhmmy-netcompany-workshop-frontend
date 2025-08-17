@@ -12,13 +12,12 @@ export default function Dashboard() {
   const dispatch = useDispatch();
   const { matches, loading, error } = useSelector((state) => state.matchState);
 
-  useEffect(() => {
+    useEffect(() => {
     dispatch(fetchMatchesRequest());
-    setFilteredMatches(matches);
   }, [dispatch]);
 
   useEffect(() => {
-  setFilteredMatches(matches);
+    setFilteredMatches(matches);
   }, [matches]);
 
   //Client Side Searching
@@ -36,6 +35,29 @@ export default function Dashboard() {
     setFilteredMatches(results);
   };
 
+  //Client Side Filtering
+  const handleFilter = (filterval) => {
+    console.log(filterval);
+    if(filterval.teamAwayFilter == "--" && filterval.teamHomeFilter == "--"){
+      setFilteredMatches(matches);
+      return;
+    }
+    let results;
+
+    if(filterval.teamAwayFilter == "--"){
+      results = matches.filter(m=>(m.teamHomeName===filterval.teamHomeFilter));
+    }else if(filterval.teamHomeFilter  == "--"){
+      results = matches.filter(m=>(m.teamAwayName===filterval.teamAwayFilter));
+    }else{
+      results = matches.filter(
+        m =>
+          (m.teamHomeName == filterval.teamHomeFilter) &&
+          (m.teamAwayName == filterval.teamAwayFilter)
+      );
+    }
+    setFilteredMatches(results);
+  }
+
   return (
     <>
       <div className="formscontainer">
@@ -43,7 +65,7 @@ export default function Dashboard() {
           className="matchform" 
           onMatchSubmitted={() => dispatch(fetchMatchesRequest())} 
         />
-        <FilterForm className="filterform"/>
+        <FilterForm className="filterform" matches={matches} onFilterSubmitted={handleFilter}/>
       </div>
       <div className="searchbox">
         <SearchForm onSearchSubmitted={handleSearch}/>
