@@ -14,4 +14,7 @@
   <li>Table view of registered matches</li>
 </ul>
 
+<p>--Update AUG2024</p>
+<p>Client-side searching and filteing are functional</p>
+</hr>
 <p>"Panel View" and the application's search box are still in progress...</p>
