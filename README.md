@@ -15,6 +15,6 @@
 </ul>
 
 <p>--Update AUG2024</p>
-<p>Client-side searching and filteing are functional</p>
+<p>Client-side searching is functional</p>
 </hr>
-<p>"Panel View" and the application's search box are still in progress...</p>
+<p>"Panel View" is still in progress...</p>
